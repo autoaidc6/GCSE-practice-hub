@@ -134,6 +134,18 @@ const allQuestions: Record<ScienceSubject, any[]> = {
   ]
 };
 
+const subjectIcons = {
+  Biology: <Beaker className="text-emerald-600 w-6 h-6" />,
+  Chemistry: <FlaskConical className="text-blue-600 w-6 h-6" />,
+  Physics: <Atom className="text-purple-600 w-6 h-6" />
+};
+
+const subjectColors = {
+  Biology: 'emerald',
+  Chemistry: 'blue',
+  Physics: 'purple'
+} as const;
+
 const Science = () => {
   const [selectedSubject, setSelectedSubject] = useState<ScienceSubject>('Biology');
   const [isHigher, setIsHigher] = useState(false);
@@ -154,7 +166,7 @@ const Science = () => {
     if (questions[currentQuestion]) {
       setItems([...questions[currentQuestion].items].sort(() => Math.random() - 0.5));
     }
-  }, [currentQuestion, selectedSubject, questions]);
+  }, [currentQuestion, selectedSubject]);
 
   const handleReorder = (id: string, direction: 'up' | 'down') => {
     const index = items.findIndex(item => item.id === id);
@@ -170,18 +182,6 @@ const Science = () => {
   };
 
   const isCorrect = currentQuestionData && items.every((item, idx) => item.id === currentQuestionData.correctOrder[idx]);
-
-  const subjectIcons = {
-    Biology: <Beaker className="text-emerald-600 w-6 h-6" />,
-    Chemistry: <FlaskConical className="text-blue-600 w-6 h-6" />,
-    Physics: <Atom className="text-purple-600 w-6 h-6" />
-  };
-
-  const subjectColors = {
-    Biology: 'emerald',
-    Chemistry: 'blue',
-    Physics: 'purple'
-  };
 
   return (
     <section id="science" className="py-24 bg-white">

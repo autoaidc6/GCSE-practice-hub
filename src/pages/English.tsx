@@ -2,68 +2,68 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { BookOpen, Play, CheckCircle2, AlertCircle } from 'lucide-react';
 
+const questions = [
+  {
+    sourceTitle: "Source Text: Extract from 'A Passage to Africa'",
+    text: "\"I saw a thousand hungry, lean, scared and betrayed faces as I navigated through the village. But there was one face I will never forget.\"",
+    highlight: "\"a thousand hungry, lean, scared and betrayed faces\"",
+    question: "What is the effect of the list of adjectives \"hungry, lean, scared and betrayed\"?",
+    options: [
+      "It suggests the author is confused by the situation.",
+      "It emphasizes the physical and emotional toll on the people.",
+      "It shows the author's lack of interest in the village.",
+      "It highlights the literal beauty of the landscape."
+    ],
+    correctIndex: 1,
+    explanation: "Correct! The cumulative effect of these adjectives builds a vivid picture of the multifaceted misery faced by the villagers."
+  },
+  {
+    sourceTitle: "Source Text: Extract from 'The Explorer's Daughter'",
+    text: "\"The narwhal is an essential resource for the Inughuit people. Every part of the animal is used, from the blubber to the tusks.\"",
+    highlight: "\"essential resource\"",
+    question: "How does the author create a sense of necessity in this extract?",
+    options: [
+      "By describing the narwhal as a dangerous predator.",
+      "By listing the various uses of the animal's body parts.",
+      "By focusing on the beauty of the Arctic landscape.",
+      "By suggesting the hunt is a recreational activity."
+    ],
+    correctIndex: 1,
+    explanation: "Correct! The detailed list of uses reinforces the idea that the narwhal is vital for survival, not just a target for sport."
+  },
+  {
+    sourceTitle: "Source Text: Extract from 'Chinese Cinderella'",
+    text: "\"I was so happy that I was finally going to school in England. I felt like a bird escaping from a cage.\"",
+    highlight: "\"bird escaping from a cage\"",
+    question: "What does the simile \"bird escaping from a cage\" suggest about the author's feelings?",
+    options: [
+      "She is afraid of the unknown in England.",
+      "She feels trapped in her current life and seeks freedom.",
+      "She is literally turning into a bird.",
+      "She is sad to leave her family behind."
+    ],
+    correctIndex: 1,
+    explanation: "Correct! The cage represents her restrictive home life, and the bird represents her desire for independence and freedom."
+  },
+  {
+    sourceTitle: "Source Text: Extract from 'Beyond the Sky and the Earth'",
+    text: "\"The mountains were so high they seemed to touch the stars. It was a landscape of pure, unadulterated beauty.\"",
+    highlight: "\"landscape of pure, unadulterated beauty\"",
+    question: "What is the tone created by the phrase \"pure, unadulterated beauty\"?",
+    options: [
+      "One of fear and intimidation.",
+      "One of awe and profound admiration.",
+      "One of boredom and repetition.",
+      "One of scientific detachment."
+    ],
+    correctIndex: 1,
+    explanation: "Correct! The use of 'pure' and 'unadulterated' emphasizes the author's deep appreciation for the untouched nature of the landscape."
+  }
+];
+
 const English = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
-
-  const questions = [
-    {
-      sourceTitle: "Source Text: Extract from 'A Passage to Africa'",
-      text: "\"I saw a thousand hungry, lean, scared and betrayed faces as I navigated through the village. But there was one face I will never forget.\"",
-      highlight: "\"a thousand hungry, lean, scared and betrayed faces\"",
-      question: "What is the effect of the list of adjectives \"hungry, lean, scared and betrayed\"?",
-      options: [
-        "It suggests the author is confused by the situation.",
-        "It emphasizes the physical and emotional toll on the people.",
-        "It shows the author's lack of interest in the village.",
-        "It highlights the literal beauty of the landscape."
-      ],
-      correctIndex: 1,
-      explanation: "Correct! The cumulative effect of these adjectives builds a vivid picture of the multifaceted misery faced by the villagers."
-    },
-    {
-      sourceTitle: "Source Text: Extract from 'The Explorer's Daughter'",
-      text: "\"The narwhal is an essential resource for the Inughuit people. Every part of the animal is used, from the blubber to the tusks.\"",
-      highlight: "\"essential resource\"",
-      question: "How does the author create a sense of necessity in this extract?",
-      options: [
-        "By describing the narwhal as a dangerous predator.",
-        "By listing the various uses of the animal's body parts.",
-        "By focusing on the beauty of the Arctic landscape.",
-        "By suggesting the hunt is a recreational activity."
-      ],
-      correctIndex: 1,
-      explanation: "Correct! The detailed list of uses reinforces the idea that the narwhal is vital for survival, not just a target for sport."
-    },
-    {
-      sourceTitle: "Source Text: Extract from 'Chinese Cinderella'",
-      text: "\"I was so happy that I was finally going to school in England. I felt like a bird escaping from a cage.\"",
-      highlight: "\"bird escaping from a cage\"",
-      question: "What does the simile \"bird escaping from a cage\" suggest about the author's feelings?",
-      options: [
-        "She is afraid of the unknown in England.",
-        "She feels trapped in her current life and seeks freedom.",
-        "She is literally turning into a bird.",
-        "She is sad to leave her family behind."
-      ],
-      correctIndex: 1,
-      explanation: "Correct! The cage represents her restrictive home life, and the bird represents her desire for independence and freedom."
-    },
-    {
-      sourceTitle: "Source Text: Extract from 'Beyond the Sky and the Earth'",
-      text: "\"The mountains were so high they seemed to touch the stars. It was a landscape of pure, unadulterated beauty.\"",
-      highlight: "\"landscape of pure, unadulterated beauty\"",
-      question: "What is the tone created by the phrase \"pure, unadulterated beauty\"?",
-      options: [
-        "One of fear and intimidation.",
-        "One of awe and profound admiration.",
-        "One of boredom and repetition.",
-        "One of scientific detachment."
-      ],
-      correctIndex: 1,
-      explanation: "Correct! The use of 'pure' and 'unadulterated' emphasizes the author's deep appreciation for the untouched nature of the landscape."
-    }
-  ];
 
   useEffect(() => {
     setSelectedOption(null);

@@ -2,116 +2,116 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Terminal as TerminalIcon, Play, CheckCircle2, Code2 } from 'lucide-react';
 
+const questions = [
+  {
+    title: "Binary Conversion",
+    topic: "Data Representation",
+    code: [
+      "# Convert binary to hexadecimal",
+      "Binary: 1011 0101",
+      "# Step 1: Split into nibbles (4 bits)",
+      "Nibble 1: 1011 (11 in decimal)",
+      "Nibble 2: 0101 (5 in decimal)",
+      "# ERROR HERE: Incorrect Hex mapping",
+      "Hex: B6"
+    ],
+    options: [
+      { id: "1", text: "A5" },
+      { id: "2", text: "B5" },
+      { id: "3", text: "C5" },
+      { id: "4", text: "D5" }
+    ],
+    correctId: "2",
+    explanation: "Correct! 1011 is B in Hex and 0101 is 5 in Hex, making the final value B5."
+  },
+  {
+    title: "Logic Gates",
+    topic: "Boolean Logic",
+    code: [
+      "# Determine output of logic circuit",
+      "A = True, B = False",
+      "Q = (A AND B) OR (NOT B)",
+      "# Step 1: (True AND False) = False",
+      "# Step 2: (NOT False) = True",
+      "# Step 3: False OR True = ?",
+      "Output: False"
+    ],
+    options: [
+      { id: "1", text: "True" },
+      { id: "2", text: "False" },
+      { id: "3", text: "Undefined" },
+      { id: "4", text: "Error" }
+    ],
+    correctId: "1",
+    explanation: "Correct! False OR True evaluates to True in Boolean logic."
+  },
+  {
+    title: "Binary Search Logic",
+    topic: "Algorithms",
+    code: [
+      "# List: [10, 20, 30, 40, 50, 60, 70]",
+      "Target: 60",
+      "Low: 0, High: 6, Mid: 3 (Value 40)",
+      "# Step 1: 60 > 40? Yes",
+      "# Step 2: New Low = Mid + 1 = 4",
+      "# Step 3: New Mid = (4 + 6) // 2 = 5",
+      "# ERROR HERE: What is the value at index 5?",
+      "Value at Index 5: ?"
+    ],
+    options: [
+      { id: "1", text: "50" },
+      { id: "2", text: "60" },
+      { id: "3", text: "70" },
+      { id: "4", text: "40" }
+    ],
+    correctId: "2",
+    explanation: "Correct! The value at index 5 is 60, which matches our target. The search is complete."
+  },
+  {
+    title: "Network Topologies",
+    topic: "Networks",
+    code: [
+      "# Identify the topology",
+      "All nodes are connected to a central hub/switch.",
+      "If the central hub fails, the whole network fails.",
+      "If one node cable fails, only that node is affected.",
+      "# ERROR HERE: Is this a Bus or Star topology?",
+      "Topology: Bus"
+    ],
+    options: [
+      { id: "1", text: "Star" },
+      { id: "2", text: "Bus" },
+      { id: "3", text: "Ring" },
+      { id: "4", text: "Mesh" }
+    ],
+    correctId: "1",
+    explanation: "Correct! A Star topology uses a central hub or switch to connect all devices."
+  },
+  {
+    title: "Cyber Security",
+    topic: "Security",
+    code: [
+      "# Identify the attack",
+      "An attacker sends an email pretending to be a bank.",
+      "The email contains a link to a fake login page.",
+      "The goal is to steal user credentials.",
+      "# ERROR HERE: Is this Brute Force or Phishing?",
+      "Attack: Brute Force"
+    ],
+    options: [
+      { id: "1", text: "Phishing" },
+      { id: "2", text: "Brute Force" },
+      { id: "3", text: "SQL Injection" },
+      { id: "4", text: "DDOS" }
+    ],
+    correctId: "1",
+    explanation: "Correct! Phishing involves using fake communications to trick users into revealing sensitive data."
+  }
+];
+
 const Tech = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedFix, setSelectedFix] = useState("");
-
-  const questions = [
-    {
-      title: "Binary Conversion",
-      topic: "Data Representation",
-      code: [
-        "# Convert binary to hexadecimal",
-        "Binary: 1011 0101",
-        "# Step 1: Split into nibbles (4 bits)",
-        "Nibble 1: 1011 (11 in decimal)",
-        "Nibble 2: 0101 (5 in decimal)",
-        "# ERROR HERE: Incorrect Hex mapping",
-        "Hex: B6"
-      ],
-      options: [
-        { id: "1", text: "A5" },
-        { id: "2", text: "B5" },
-        { id: "3", text: "C5" },
-        { id: "4", text: "D5" }
-      ],
-      correctId: "2",
-      explanation: "Correct! 1011 is B in Hex and 0101 is 5 in Hex, making the final value B5."
-    },
-    {
-      title: "Logic Gates",
-      topic: "Boolean Logic",
-      code: [
-        "# Determine output of logic circuit",
-        "A = True, B = False",
-        "Q = (A AND B) OR (NOT B)",
-        "# Step 1: (True AND False) = False",
-        "# Step 2: (NOT False) = True",
-        "# Step 3: False OR True = ?",
-        "Output: False"
-      ],
-      options: [
-        { id: "1", text: "True" },
-        { id: "2", text: "False" },
-        { id: "3", text: "Undefined" },
-        { id: "4", text: "Error" }
-      ],
-      correctId: "1",
-      explanation: "Correct! False OR True evaluates to True in Boolean logic."
-    },
-    {
-      title: "Binary Search Logic",
-      topic: "Algorithms",
-      code: [
-        "# List: [10, 20, 30, 40, 50, 60, 70]",
-        "Target: 60",
-        "Low: 0, High: 6, Mid: 3 (Value 40)",
-        "# Step 1: 60 > 40? Yes",
-        "# Step 2: New Low = Mid + 1 = 4",
-        "# Step 3: New Mid = (4 + 6) // 2 = 5",
-        "# ERROR HERE: What is the value at index 5?",
-        "Value at Index 5: ?"
-      ],
-      options: [
-        { id: "1", text: "50" },
-        { id: "2", text: "60" },
-        { id: "3", text: "70" },
-        { id: "4", text: "40" }
-      ],
-      correctId: "2",
-      explanation: "Correct! The value at index 5 is 60, which matches our target. The search is complete."
-    },
-    {
-      title: "Network Topologies",
-      topic: "Networks",
-      code: [
-        "# Identify the topology",
-        "All nodes are connected to a central hub/switch.",
-        "If the central hub fails, the whole network fails.",
-        "If one node cable fails, only that node is affected.",
-        "# ERROR HERE: Is this a Bus or Star topology?",
-        "Topology: Bus"
-      ],
-      options: [
-        { id: "1", text: "Star" },
-        { id: "2", text: "Bus" },
-        { id: "3", text: "Ring" },
-        { id: "4", text: "Mesh" }
-      ],
-      correctId: "1",
-      explanation: "Correct! A Star topology uses a central hub or switch to connect all devices."
-    },
-    {
-      title: "Cyber Security",
-      topic: "Security",
-      code: [
-        "# Identify the attack",
-        "An attacker sends an email pretending to be a bank.",
-        "The email contains a link to a fake login page.",
-        "The goal is to steal user credentials.",
-        "# ERROR HERE: Is this Brute Force or Phishing?",
-        "Attack: Brute Force"
-      ],
-      options: [
-        { id: "1", text: "Phishing" },
-        { id: "2", text: "Brute Force" },
-        { id: "3", text: "SQL Injection" },
-        { id: "4", text: "DDOS" }
-      ],
-      correctId: "1",
-      explanation: "Correct! Phishing involves using fake communications to trick users into revealing sensitive data."
-    }
-  ];
 
   useEffect(() => {
     setSelectedFix("");

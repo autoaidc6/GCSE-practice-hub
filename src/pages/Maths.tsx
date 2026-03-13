@@ -2,45 +2,45 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Calculator, Play, CheckCircle2, AlertCircle } from 'lucide-react';
 
+const questions = [
+  {
+    equation: "5(x - 3) = 20",
+    steps: [
+      { label: "Step 1: Expand brackets", placeholder: "5x - 15 = 20", correct: "5x-15=20" },
+      { label: "Step 2: Isolate 5x", placeholder: "5x = 35", correct: "5x=35" },
+      { label: "Step 3: Solve for x", placeholder: "x = 7", correct: "x=7" }
+    ]
+  },
+  {
+    equation: "3(2x - 5) = 9",
+    steps: [
+      { label: "Step 1: Expand brackets", placeholder: "6x - 15 = 9", correct: "6x-15=9" },
+      { label: "Step 2: Isolate 6x", placeholder: "6x = 24", correct: "6x=24" },
+      { label: "Step 3: Solve for x", placeholder: "x = 4", correct: "x=4" }
+    ]
+  },
+  {
+    equation: "4(x + 2) = 20",
+    steps: [
+      { label: "Step 1: Expand brackets", placeholder: "4x + 8 = 20", correct: "4x+8=20" },
+      { label: "Step 2: Isolate 4x", placeholder: "4x = 12", correct: "4x=12" },
+      { label: "Step 3: Solve for x", placeholder: "x = 3", correct: "x=3" }
+    ]
+  },
+  {
+    equation: "2(3x - 1) = 10",
+    steps: [
+      { label: "Step 1: Expand brackets", placeholder: "6x - 2 = 10", correct: "6x-2=10" },
+      { label: "Step 2: Isolate 6x", placeholder: "6x = 12", correct: "6x=12" },
+      { label: "Step 3: Solve for x", placeholder: "x = 2", correct: "x=2" }
+    ]
+  }
+];
+
 const Maths = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState(["", "", ""]);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-
-  const questions = [
-    {
-      equation: "5(x - 3) = 20",
-      steps: [
-        { label: "Step 1: Expand brackets", placeholder: "5x - 15 = 20", correct: "5x-15=20" },
-        { label: "Step 2: Isolate 5x", placeholder: "5x = 35", correct: "5x=35" },
-        { label: "Step 3: Solve for x", placeholder: "x = 7", correct: "x=7" }
-      ]
-    },
-    {
-      equation: "3(2x - 5) = 9",
-      steps: [
-        { label: "Step 1: Expand brackets", placeholder: "6x - 15 = 9", correct: "6x-15=9" },
-        { label: "Step 2: Isolate 6x", placeholder: "6x = 24", correct: "6x=24" },
-        { label: "Step 3: Solve for x", placeholder: "x = 4", correct: "x=4" }
-      ]
-    },
-    {
-      equation: "4(x + 2) = 20",
-      steps: [
-        { label: "Step 1: Expand brackets", placeholder: "4x + 8 = 20", correct: "4x+8=20" },
-        { label: "Step 2: Isolate 4x", placeholder: "4x = 12", correct: "4x=12" },
-        { label: "Step 3: Solve for x", placeholder: "x = 3", correct: "x=3" }
-      ]
-    },
-    {
-      equation: "2(3x - 1) = 10",
-      steps: [
-        { label: "Step 1: Expand brackets", placeholder: "6x - 2 = 10", correct: "6x-2=10" },
-        { label: "Step 2: Isolate 6x", placeholder: "6x = 12", correct: "6x=12" },
-        { label: "Step 3: Solve for x", placeholder: "x = 2", correct: "x=2" }
-      ]
-    }
-  ];
 
   useEffect(() => {
     setUserAnswers(["", "", ""]);

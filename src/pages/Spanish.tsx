@@ -2,41 +2,41 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Globe, Play, CheckCircle2, AlertCircle } from 'lucide-react';
 
+const questions = [
+  {
+    spanish: "En mi tiempo libre, me encanta ir al cine con mis amigos porque es muy divertido.",
+    english: "In my free time, I love going to the [cine] with my friends.",
+    missingWord: "cine",
+    correctTranslation: "cinema",
+    hint: "The word 'cine' translates to 'cinema' in English."
+  },
+  {
+    spanish: "Mi asignatura favorita es el dibujo porque soy una persona muy creativa.",
+    english: "My favorite subject is [dibujo] because I am a very creative person.",
+    missingWord: "dibujo",
+    correctTranslation: "art",
+    hint: "The word 'dibujo' translates to 'art' or 'drawing' in English."
+  },
+  {
+    spanish: "Normalmente, desayuno cereales con leche y bebo un zumo de naranja.",
+    english: "Normally, I have breakfast of cereals with milk and I drink an [zumo] of orange.",
+    missingWord: "zumo",
+    correctTranslation: "juice",
+    hint: "The word 'zumo' translates to 'juice' in English."
+  },
+  {
+    spanish: "El fin de semana pasado, fui al parque con mi familia y jugamos al fútbol.",
+    english: "Last weekend, I went to the [parque] with my family and we played football.",
+    missingWord: "parque",
+    correctTranslation: "park",
+    hint: "The word 'parque' translates to 'park' in English."
+  }
+];
+
 const Spanish = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [translation, setTranslation] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const questions = [
-    {
-      spanish: "En mi tiempo libre, me encanta ir al cine con mis amigos porque es muy divertido.",
-      english: "In my free time, I love going to the [cine] with my friends.",
-      missingWord: "cine",
-      correctTranslation: "cinema",
-      hint: "The word 'cine' translates to 'cinema' in English."
-    },
-    {
-      spanish: "Mi asignatura favorita es el dibujo porque soy una persona muy creativa.",
-      english: "My favorite subject is [dibujo] because I am a very creative person.",
-      missingWord: "dibujo",
-      correctTranslation: "art",
-      hint: "The word 'dibujo' translates to 'art' or 'drawing' in English."
-    },
-    {
-      spanish: "Normalmente, desayuno cereales con leche y bebo un zumo de naranja.",
-      english: "Normally, I have breakfast of cereals with milk and I drink an [zumo] of orange.",
-      missingWord: "zumo",
-      correctTranslation: "juice",
-      hint: "The word 'zumo' translates to 'juice' in English."
-    },
-    {
-      spanish: "El fin de semana pasado, fui al parque con mi familia y jugamos al fútbol.",
-      english: "Last weekend, I went to the [parque] with my family and we played football.",
-      missingWord: "parque",
-      correctTranslation: "park",
-      hint: "The word 'parque' translates to 'park' in English."
-    }
-  ];
 
   useEffect(() => {
     setTranslation("");
