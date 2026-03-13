@@ -34,6 +34,34 @@ const English = () => {
       ],
       correctIndex: 1,
       explanation: "Correct! The detailed list of uses reinforces the idea that the narwhal is vital for survival, not just a target for sport."
+    },
+    {
+      sourceTitle: "Source Text: Extract from 'Chinese Cinderella'",
+      text: "\"I was so happy that I was finally going to school in England. I felt like a bird escaping from a cage.\"",
+      highlight: "\"bird escaping from a cage\"",
+      question: "What does the simile \"bird escaping from a cage\" suggest about the author's feelings?",
+      options: [
+        "She is afraid of the unknown in England.",
+        "She feels trapped in her current life and seeks freedom.",
+        "She is literally turning into a bird.",
+        "She is sad to leave her family behind."
+      ],
+      correctIndex: 1,
+      explanation: "Correct! The cage represents her restrictive home life, and the bird represents her desire for independence and freedom."
+    },
+    {
+      sourceTitle: "Source Text: Extract from 'Beyond the Sky and the Earth'",
+      text: "\"The mountains were so high they seemed to touch the stars. It was a landscape of pure, unadulterated beauty.\"",
+      highlight: "\"landscape of pure, unadulterated beauty\"",
+      question: "What is the tone created by the phrase \"pure, unadulterated beauty\"?",
+      options: [
+        "One of fear and intimidation.",
+        "One of awe and profound admiration.",
+        "One of boredom and repetition.",
+        "One of scientific detachment."
+      ],
+      correctIndex: 1,
+      explanation: "Correct! The use of 'pure' and 'unadulterated' emphasizes the author's deep appreciation for the untouched nature of the landscape."
     }
   ];
 
@@ -53,6 +81,7 @@ const English = () => {
               <h2 className="text-3xl font-bold">The Reading Room</h2>
             </div>
             <p className="text-slate-600 text-lg">Master the Written Word. Analyze Non-Fiction Texts (Edexcel Paper 1).</p>
+            <p className="text-sm font-bold text-rose-600 mt-2 uppercase tracking-wider">Question {currentQuestion + 1} of {questions.length}</p>
           </div>
           <button 
             onClick={() => setCurrentQuestion((prev) => (prev + 1) % questions.length)}

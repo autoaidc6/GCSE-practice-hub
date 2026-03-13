@@ -48,6 +48,68 @@ const Tech = () => {
       ],
       correctId: "1",
       explanation: "Correct! False OR True evaluates to True in Boolean logic."
+    },
+    {
+      title: "Binary Search Logic",
+      topic: "Algorithms",
+      code: [
+        "# List: [10, 20, 30, 40, 50, 60, 70]",
+        "Target: 60",
+        "Low: 0, High: 6, Mid: 3 (Value 40)",
+        "# Step 1: 60 > 40? Yes",
+        "# Step 2: New Low = Mid + 1 = 4",
+        "# Step 3: New Mid = (4 + 6) // 2 = 5",
+        "# ERROR HERE: What is the value at index 5?",
+        "Value at Index 5: ?"
+      ],
+      options: [
+        { id: "1", text: "50" },
+        { id: "2", text: "60" },
+        { id: "3", text: "70" },
+        { id: "4", text: "40" }
+      ],
+      correctId: "2",
+      explanation: "Correct! The value at index 5 is 60, which matches our target. The search is complete."
+    },
+    {
+      title: "Network Topologies",
+      topic: "Networks",
+      code: [
+        "# Identify the topology",
+        "All nodes are connected to a central hub/switch.",
+        "If the central hub fails, the whole network fails.",
+        "If one node cable fails, only that node is affected.",
+        "# ERROR HERE: Is this a Bus or Star topology?",
+        "Topology: Bus"
+      ],
+      options: [
+        { id: "1", text: "Star" },
+        { id: "2", text: "Bus" },
+        { id: "3", text: "Ring" },
+        { id: "4", text: "Mesh" }
+      ],
+      correctId: "1",
+      explanation: "Correct! A Star topology uses a central hub or switch to connect all devices."
+    },
+    {
+      title: "Cyber Security",
+      topic: "Security",
+      code: [
+        "# Identify the attack",
+        "An attacker sends an email pretending to be a bank.",
+        "The email contains a link to a fake login page.",
+        "The goal is to steal user credentials.",
+        "# ERROR HERE: Is this Brute Force or Phishing?",
+        "Attack: Brute Force"
+      ],
+      options: [
+        { id: "1", text: "Phishing" },
+        { id: "2", text: "Brute Force" },
+        { id: "3", text: "SQL Injection" },
+        { id: "4", text: "DDOS" }
+      ],
+      correctId: "1",
+      explanation: "Correct! Phishing involves using fake communications to trick users into revealing sensitive data."
     }
   ];
 
@@ -67,6 +129,7 @@ const Tech = () => {
               <h2 className="text-3xl font-bold">The Terminal</h2>
             </div>
             <p className="text-slate-400 text-lg">Think Like a Programmer. Master Principles of Computer Science (Edexcel Paper 1).</p>
+            <p className="text-sm font-bold text-blue-400 mt-2 uppercase tracking-wider">Question {currentQuestion + 1} of {questions.length}</p>
           </div>
           <button 
             onClick={() => setCurrentQuestion((prev) => (prev + 1) % questions.length)}

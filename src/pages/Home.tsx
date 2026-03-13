@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Beaker, BookOpen, Terminal as TerminalIcon, Globe, Calculator } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -39,6 +40,19 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, description, isOpe
 
 const Home = () => {
   const [activeAO, setActiveAO] = useState<number | null>(0);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   const assessmentObjectives = [
     {
@@ -66,6 +80,13 @@ const Home = () => {
     { name: 'Spanish', path: '/spanish', icon: Globe, color: 'text-amber-600', bg: 'bg-amber-50' },
   ];
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div>
       {/* Hero Banner */}
@@ -85,10 +106,16 @@ const Home = () => {
               Stop guessing what the examiner wants. Dive into official Edexcel assessment criteria, test your knowledge with interactive quizzes, and unlock your top grade across Sciences, Humanities, Languages, and Tech.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-200">
+              <button 
+                onClick={() => scrollToSection('subjects')}
+                className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-200"
+              >
                 Choose Your Subject
               </button>
-              <button className="px-8 py-4 border-2 border-slate-200 text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all">
+              <button 
+                onClick={() => scrollToSection('marking-guide')}
+                className="px-8 py-4 border-2 border-slate-200 text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all"
+              >
                 How Marking Works
               </button>
             </div>
@@ -132,7 +159,7 @@ const Home = () => {
       </header>
 
       {/* Assessment Engine */}
-      <section className="py-24 bg-slate-50">
+      <section id="marking-guide" className="py-24 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">Inside the Examiner's Mind: How You Are Graded</h2>
           <p className="text-xl text-slate-600 mb-16 leading-relaxed">
@@ -154,7 +181,7 @@ const Home = () => {
       </section>
 
       {/* Subject Grid */}
-      <section className="py-24 bg-white">
+      <section id="subjects" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold mb-12 text-center">Explore Your Subjects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

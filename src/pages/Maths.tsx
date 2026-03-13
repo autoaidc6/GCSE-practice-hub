@@ -23,6 +23,22 @@ const Maths = () => {
         { label: "Step 2: Isolate 6x", placeholder: "6x = 24", correct: "6x=24" },
         { label: "Step 3: Solve for x", placeholder: "x = 4", correct: "x=4" }
       ]
+    },
+    {
+      equation: "4(x + 2) = 20",
+      steps: [
+        { label: "Step 1: Expand brackets", placeholder: "4x + 8 = 20", correct: "4x+8=20" },
+        { label: "Step 2: Isolate 4x", placeholder: "4x = 12", correct: "4x=12" },
+        { label: "Step 3: Solve for x", placeholder: "x = 3", correct: "x=3" }
+      ]
+    },
+    {
+      equation: "2(3x - 1) = 10",
+      steps: [
+        { label: "Step 1: Expand brackets", placeholder: "6x - 2 = 10", correct: "6x-2=10" },
+        { label: "Step 2: Isolate 6x", placeholder: "6x = 12", correct: "6x=12" },
+        { label: "Step 3: Solve for x", placeholder: "x = 2", correct: "x=2" }
+      ]
     }
   ];
 
@@ -50,6 +66,7 @@ const Maths = () => {
               <h2 className="text-3xl font-bold">The Calculation Center</h2>
             </div>
             <p className="text-slate-600 text-lg">Master the Numbers. Solve 2024 Edexcel Paper 1 Higher Algebra.</p>
+            <p className="text-sm font-bold text-violet-600 mt-2 uppercase tracking-wider">Question {currentQuestion + 1} of {questions.length}</p>
           </div>
           <button 
             onClick={() => setCurrentQuestion((prev) => (prev + 1) % questions.length)}

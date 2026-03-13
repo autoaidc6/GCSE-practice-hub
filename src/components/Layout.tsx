@@ -17,7 +17,7 @@ const Layout = () => {
             <Link to="/english" className="hover:text-blue-600 transition-colors">English</Link>
             <Link to="/tech" className="hover:text-blue-600 transition-colors">Tech</Link>
             <Link to="/spanish" className="hover:text-blue-600 transition-colors">Spanish</Link>
-            <Link to="/" className="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-100">
+            <Link to="/#subjects" className="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-100">
               Get Started
             </Link>
           </div>

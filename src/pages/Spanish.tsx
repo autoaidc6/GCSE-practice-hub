@@ -21,6 +21,20 @@ const Spanish = () => {
       missingWord: "dibujo",
       correctTranslation: "art",
       hint: "The word 'dibujo' translates to 'art' or 'drawing' in English."
+    },
+    {
+      spanish: "Normalmente, desayuno cereales con leche y bebo un zumo de naranja.",
+      english: "Normally, I have breakfast of cereals with milk and I drink an [zumo] of orange.",
+      missingWord: "zumo",
+      correctTranslation: "juice",
+      hint: "The word 'zumo' translates to 'juice' in English."
+    },
+    {
+      spanish: "El fin de semana pasado, fui al parque con mi familia y jugamos al fútbol.",
+      english: "Last weekend, I went to the [parque] with my family and we played football.",
+      missingWord: "parque",
+      correctTranslation: "park",
+      hint: "The word 'parque' translates to 'park' in English."
     }
   ];
 
@@ -41,6 +55,7 @@ const Spanish = () => {
               <h2 className="text-3xl font-bold">The Global Lounge</h2>
             </div>
             <p className="text-slate-600 text-lg">Fluency & Comprehension. Master Reading and Understanding (Edexcel Spanish Paper 3).</p>
+            <p className="text-sm font-bold text-amber-600 mt-2 uppercase tracking-wider">Question {currentQuestion + 1} of {questions.length}</p>
           </div>
           <button 
             onClick={() => setCurrentQuestion((prev) => (prev + 1) % questions.length)}
