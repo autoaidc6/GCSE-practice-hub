@@ -106,17 +106,17 @@ const Home = () => {
               Stop guessing what the examiner wants. Dive into official Edexcel assessment criteria, test your knowledge with interactive quizzes, and unlock your top grade across Sciences, Humanities, Languages, and Tech.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button 
-                onClick={() => scrollToSection('subjects')}
+              <Link 
+                to="/dashboard"
                 className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-200"
               >
-                Choose Your Subject
-              </button>
+                Go to Dashboard
+              </Link>
               <button 
-                onClick={() => scrollToSection('marking-guide')}
-                className="px-8 py-4 border-2 border-slate-200 text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all"
+                onClick={() => scrollToSection('subjects')}
+                className="px-8 py-4 border-2 border-blue-600 text-blue-600 font-bold rounded-2xl hover:bg-blue-50 transition-all"
               >
-                How Marking Works
+                Explore Subjects
               </button>
             </div>
           </motion.div>

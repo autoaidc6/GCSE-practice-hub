@@ -1,9 +1,5 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Science from './pages/Science';
@@ -11,10 +7,11 @@ import Maths from './pages/Maths';
 import English from './pages/English';
 import Tech from './pages/Tech';
 import Spanish from './pages/Spanish';
+import Dashboard from './pages/Dashboard';
 
-export default function App() {
+const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -23,8 +20,11 @@ export default function App() {
           <Route path="english" element={<English />} />
           <Route path="tech" element={<Tech />} />
           <Route path="spanish" element={<Spanish />} />
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
-}
+};
+
+export default App;
